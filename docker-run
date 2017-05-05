@@ -1,0 +1,15 @@
+#!/bin/bash -xe
+
+PORT=${PORT-4000}
+CONTAINER_NAME=${CONTAINER_NAME-test}
+
+echo "Running tests in a Docker container"
+
+docker build -t $CONTAINER_NAME .
+
+docker run \
+  -p $PORT:$PORT \
+  -it \
+  --rm \
+  --name $CONTAINER_NAME \
+  $CONTAINER_NAME
